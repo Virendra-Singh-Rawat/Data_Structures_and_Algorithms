@@ -24,13 +24,21 @@ void insertAtTail(Node* &tail, int d){     //inserting a node at the end
     tail = temp;
 }
 
-void insertAtPos(Node* &head, int position, int d){          
+void insertAtPos(Node* &head,Node* &tail, int position, int d){          
 //inserting a node at a specific positon in a linked list
     Node* temp = head;
+    if(position==1){
+        insertAtHead(head,d);
+        return;
+    }
     int count=1;
     while(count<position-1){
         temp=temp->next;
         count++;
+    }
+    if(temp->next=NULL){
+        insertAtTail(tail,d);
+        return;
     }
     Node* nodetoinsert = new Node(d);
     nodetoinsert->next = temp->next;
@@ -63,7 +71,7 @@ int main(){
     insertAtTail(tail,20);
     print(head);
 
-    insertAtPos(head,3,18);
+    insertAtPos(head,tail,3,18);
     print(head);
 
     return 0;

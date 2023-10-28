@@ -59,9 +59,7 @@ void deleteNode(Node* & head, int position) {
     //deleting first or start node
     if(position == 1) {
         Node* temp = head;
-        head = head -> next;
-        //memory free start ndoe
-        temp -> next = NULL;
+        head = head -> next;    
         delete temp;
     }
     else

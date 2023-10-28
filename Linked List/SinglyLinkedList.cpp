@@ -54,6 +54,36 @@ void print(Node* &head){          //Printing the linked list
     cout<<endl;
 }
 
+void deleteNode(Node* & head, int position) { 
+
+    //deleting first or start node
+    if(position == 1) {
+        Node* temp = head;
+        head = head -> next;
+        //memory free start ndoe
+        temp -> next = NULL;
+        delete temp;
+    }
+    else
+    {
+        //deleting any middle node or last node
+        Node* curr = head;
+        Node* prev = NULL;
+
+        int cnt = 1;
+        while(cnt < position) {
+            prev = curr;
+            curr = curr -> next;
+            cnt++;
+        }
+
+        prev -> next = curr -> next;
+        curr -> next  = NULL;
+        delete curr;
+
+    }
+}
+
 int main(){
     //created a new node
     Node* node1 = new Node(10);
@@ -73,6 +103,9 @@ int main(){
 
     insertAtPos(head,tail,3,18);
     print(head);
+
+    deleteNode(head,1);
+    print(head); 
 
     return 0;
 }
